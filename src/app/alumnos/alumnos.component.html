@@ -34,4 +34,21 @@
       <button type="submit" class="btn btn-primary">Guardar</button>
     </form>
   </div>
-  
+
+  <!-- Agrega una tabla para mostrar los datos guardados -->
+<table class="table mt-3" *ngIf="alumnosGuardados.length > 0">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Nota</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alumno of alumnosGuardados">
+      <td>{{ alumno.nombre }}</td>
+      <td>{{ alumno.apellido }}</td>
+      <td>{{ alumno.nota }}</td>
+    </tr>
+  </tbody>
+</table>

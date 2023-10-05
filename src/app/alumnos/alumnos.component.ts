@@ -9,6 +9,35 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class AlumnosComponent {
   alumnoForm: FormGroup;
+  alumnosGuardados: any[] = []; // Arreglo para almacenar los datos guardados
+
+  constructor(private fb: FormBuilder) {
+    this.alumnoForm = this.fb.group({
+      nombre: ['', [Validators.required]],
+      apellido: ['', [Validators.required]],
+      nota: ['', [Validators.required, Validators.min(0), Validators.max(10)]]
+    });
+  }
+
+  submitForm() {
+    if (this.alumnoForm.valid) {
+      const nuevoAlumno = this.alumnoForm.value;
+      this.alumnosGuardados.push(nuevoAlumno); // Agrega el alumno a la lista de guardados
+
+      // Restablece el formulario después de guardar los datos
+      this.alumnoForm.reset();
+    } else {
+      console.log('Formulario no válido. Revise los campos.');
+    }
+  }
+
+  resetForm() {
+    this.alumnoForm.reset();
+  }
+}
+/*
+export class AlumnosComponent {
+  alumnoForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
     this.alumnoForm = this.fb.group({
@@ -34,3 +63,4 @@ export class AlumnosComponent {
   }
 }
 
+*/
